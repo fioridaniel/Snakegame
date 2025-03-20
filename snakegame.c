@@ -99,3 +99,40 @@ void getUserInput(int* headIndex, int userInput, int direction) {
         headIndex[1]++;
     }
 }
+
+void foodWasEaten(Lista* lista, char tab[ROWS][COLS], int* headIndex, int* tailIndex, int tx, int ty, int* pscore) {
+    if(headIndex[0] == tx && headIndex[1] == ty) // logica para ver se a comida foi achada
+    {
+        tab[tx][ty] = '.';
+
+        generateTarget(tab, &tx, &ty);
+
+        if(tab[tailIndex[0]][tailIndex[1] + 1] == 'o')
+        {
+            tailIndex[1]--;
+        }
+
+        else if(tab[tailIndex[0]][tailIndex[1] - 1] == 'o')
+        {
+            tailIndex[1]++;
+        }
+
+        else if(tab[tailIndex[0] + 1][tailIndex[1]] == 'o')
+        {
+            tailIndex[0]--;
+        }
+        
+        else if(tab[tailIndex[0] - 1][tailIndex[1]] == 'o')
+        {
+            tailIndex[0]++;
+        }
+
+        insereInicio(lista, tailIndex[0], tailIndex[1]);
+        *pscore++;
+        
+        if(salvarPontuacaoRecorde(*pscore))
+        {
+            mvprintw(2, COLS + 5, "Pontuacao recorde: %d\n", lerPontuacaoRecorde());
+        }
+    }
+}

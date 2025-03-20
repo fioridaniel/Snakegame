@@ -72,40 +72,7 @@ int main()
 
         if(tab[headIndex[0]][headIndex[1]] == 'o') goto endgame;
 
-        if(headIndex[0] == tx && headIndex[1] == ty) // logica para ver se a comida foi achada
-        {
-            tab[tx][ty] = '.';
-
-            generateTarget(tab, &tx, &ty);
-
-            if(tab[tailIndex[0]][tailIndex[1] + 1] == 'o')
-            {
-                tailIndex[1]--;
-            }
-
-            else if(tab[tailIndex[0]][tailIndex[1] - 1] == 'o')
-            {
-                tailIndex[1]++;
-            }
-
-            else if(tab[tailIndex[0] + 1][tailIndex[1]] == 'o')
-            {
-                tailIndex[0]--;
-            }
-            
-            else if(tab[tailIndex[0] - 1][tailIndex[1]] == 'o')
-            {
-                tailIndex[0]++;
-            }
-
-            insereInicio(lista, tailIndex[0], tailIndex[1]);
-            score++;
-            
-            if(salvarPontuacaoRecorde(score))
-            {
-                mvprintw(2, COLS + 5, "Pontuacao recorde: %d\n", lerPontuacaoRecorde());
-            }
-        }
+        foodWasEaten(lista, tab, headIndex, tailIndex, tx, ty, &score);
 
         if(headIndex[0] == ROWS - 1 || headIndex[0] == 0 || headIndex[1] == COLS - 1 || headIndex[1] == 0)
         {
