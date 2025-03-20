@@ -100,12 +100,12 @@ void getUserInput(int* headIndex, int userInput, int direction) {
     }
 }
 
-void foodWasEaten(Lista* lista, char tab[ROWS][COLS], int* headIndex, int* tailIndex, int tx, int ty, int* pscore) {
+void foodWasEaten(Lista* lista, char tab[ROWS][COLS], int* headIndex, int* tailIndex, int* tx, int* ty, int* pscore) {
     if(headIndex[0] == tx && headIndex[1] == ty) // logica para ver se a comida foi achada
     {
-        tab[tx][ty] = '.';
+        tab[*tx][*ty] = '.';
 
-        generateTarget(tab, &tx, &ty);
+        generateTarget(tab, tx, ty); // mudar aqui, tx e ty serao ponteiros
 
         if(tab[tailIndex[0]][tailIndex[1] + 1] == 'o')
         {

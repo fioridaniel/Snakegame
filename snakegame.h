@@ -34,7 +34,7 @@ void moveSnake(char tab[ROWS][COLS], Lista* l, int x, int y);
 
 void getUserInput(int* headIndex, int userInput, int direction);
 
-void foodWasEaten(Lista* lista, char tab[ROWS][COLS], int* headIndex, int* tailIndex, int tx, int ty, int score);
+void foodWasEaten(Lista* lista, char tab[ROWS][COLS], int* headIndex, int* tailIndex, int* tx, int* ty, int* pscore);
 
 void drawSnake(char tab[ROWS][COLS], Lista* l);
 
