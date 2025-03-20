@@ -26,6 +26,8 @@ void drawTable(char tab[ROWS][COLS]);
 
 void initializeTable(char tab[ROWS][COLS]);
 
+void initializeSnake(Lista* lista, char tab[ROWS][COLS]);
+
 void delay(int milliseconds);
 
 void generateTarget(char tab[ROWS][COLS], int *px, int *py);

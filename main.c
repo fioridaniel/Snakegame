@@ -1,5 +1,13 @@
 #include "snakegame.h"
 
+void initializeWindow() {
+    initscr();            // Inicia a tela
+    raw();                // Modo raw, captura a tecla sem buffer
+    keypad(stdscr, TRUE); // Habilita captura de teclas especiais, como F1, setas, etc.
+    noecho();             // Não exibe teclas pressionadas no terminal
+    mvprintw(2, COLS + 5, "Pontuacao recorde: %d\n", lerPontuacaoRecorde());
+}
+
 int main()
 {
     srand(time(NULL));
@@ -21,20 +29,12 @@ int main()
     inicializaLista(lista);
 
     // inicializando a snake
-    tab[MIDR][MIDC] = 'o'; tab[MIDR][MIDC + 1] = 'o'; tab[MIDR][MIDC + 2] = 'o'; tab[MIDR][MIDC + 3] = HEAD;
     int headIndex[2] = {MIDR, MIDC + 3};
     int tailIndex[2] = {MIDR, MIDC};
+    initializeSnake(lista, tab);
 
-    insereInicio(lista, MIDR, MIDC + 3);
-    insereInicio(lista, MIDR, MIDC + 2);
-    insereInicio(lista, MIDR, MIDC + 1);
-    insereInicio(lista, MIDR, MIDC);
-
-    initscr();            // Inicia a tela
-    raw();                // Modo raw, captura a tecla sem buffer
-    keypad(stdscr, TRUE); // Habilita captura de teclas especiais, como F1, setas, etc.
-    noecho();             // Não exibe teclas pressionadas no terminal
-    mvprintw(2, COLS + 5, "Pontuacao recorde: %d\n", lerPontuacaoRecorde());
+    // inicializa janela
+    initializeWindow();
 
     int score = 0;
     int userInput;

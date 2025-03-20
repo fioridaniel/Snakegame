@@ -26,6 +26,15 @@ void initializeTable(char tab[ROWS][COLS])
     }
 }
 
+void initializeSnake(Lista* lista, char tab[ROWS][COLS]) {
+    tab[MIDR][MIDC] = 'o'; tab[MIDR][MIDC + 1] = 'o'; tab[MIDR][MIDC + 2] = 'o'; tab[MIDR][MIDC + 3] = HEAD;
+
+    insereInicio(lista, MIDR, MIDC + 3);
+    insereInicio(lista, MIDR, MIDC + 2);
+    insereInicio(lista, MIDR, MIDC + 1);
+    insereInicio(lista, MIDR, MIDC);
+}
+
 void delay(int milliseconds) 
 {
     clock_t start_time = clock();
@@ -136,3 +145,4 @@ void foodWasEaten(Lista* lista, char tab[ROWS][COLS], int* headIndex, int* tailI
         }
     }
 }
+
