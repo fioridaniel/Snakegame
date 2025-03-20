@@ -72,7 +72,7 @@ int main()
 
         if(tab[headIndex[0]][headIndex[1]] == 'o') goto endgame;
 
-        foodWasEaten(lista, tab, headIndex, tailIndex, tx, ty, &score);
+        foodWasEaten(lista, tab, headIndex, tailIndex, &tx, &ty, &score);
 
         if(headIndex[0] == ROWS - 1 || headIndex[0] == 0 || headIndex[1] == COLS - 1 || headIndex[1] == 0)
         {

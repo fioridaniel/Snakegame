@@ -101,7 +101,7 @@ void getUserInput(int* headIndex, int userInput, int direction) {
 }
 
 void foodWasEaten(Lista* lista, char tab[ROWS][COLS], int* headIndex, int* tailIndex, int* tx, int* ty, int* pscore) {
-    if(headIndex[0] == tx && headIndex[1] == ty) // logica para ver se a comida foi achada
+    if(headIndex[0] == *tx && headIndex[1] == *ty) // logica para ver se a comida foi achada
     {
         tab[*tx][*ty] = '.';
 
@@ -128,7 +128,7 @@ void foodWasEaten(Lista* lista, char tab[ROWS][COLS], int* headIndex, int* tailI
         }
 
         insereInicio(lista, tailIndex[0], tailIndex[1]);
-        *pscore++;
+        (*pscore)++;
         
         if(salvarPontuacaoRecorde(*pscore))
         {
