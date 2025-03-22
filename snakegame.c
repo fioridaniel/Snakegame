@@ -26,7 +26,8 @@ void initializeTable(char tab[ROWS][COLS])
     }
 }
 
-void initializeSnake(Lista* lista, char tab[ROWS][COLS]) {
+void initializeSnake(Lista* lista, char tab[ROWS][COLS]) 
+{
     tab[MIDR][MIDC] = 'o'; tab[MIDR][MIDC + 1] = 'o'; tab[MIDR][MIDC + 2] = 'o'; tab[MIDR][MIDC + 3] = HEAD;
 
     insereInicio(lista, MIDR, MIDC + 3);
@@ -69,7 +70,8 @@ void moveSnake(char tab[ROWS][COLS], Lista* l, int x, int y) {
     l->tail->y = y;
 }
 
-void drawSnake(char tab[ROWS][COLS], Lista* l) {
+void drawSnake(char tab[ROWS][COLS], Lista* l) 
+{
     Node* t = l->tail;
     Node* aux = t->prev;
 
@@ -83,7 +85,8 @@ void drawSnake(char tab[ROWS][COLS], Lista* l) {
     }
 }
 
-void getUserInput(int* headIndex, int userInput, int direction) {
+void getUserInput(int* headIndex, int userInput, int direction) 
+{
     if(userInput == 'w' || userInput == KEY_UP) // mover a snake para cima
     {
         if(direction == 's' || direction == KEY_DOWN) return;
@@ -109,12 +112,13 @@ void getUserInput(int* headIndex, int userInput, int direction) {
     }
 }
 
-void foodWasEaten(Lista* lista, char tab[ROWS][COLS], int* headIndex, int* tailIndex, int* tx, int* ty, int* pscore) {
-    if(headIndex[0] == *tx && headIndex[1] == *ty) // logica para ver se a comida foi achada
+void foodWasEaten(Lista* lista, char tab[ROWS][COLS], int* headIndex, int* tailIndex, int* tx, int* ty, int* pscore) 
+{
+    if(headIndex[0] == *tx && headIndex[1] == *ty) // logica para ver se a comida foi encontrada
     {
         tab[*tx][*ty] = '.';
 
-        generateTarget(tab, tx, ty); // mudar aqui, tx e ty serao ponteiros
+        generateTarget(tab, tx, ty);
 
         if(tab[tailIndex[0]][tailIndex[1] + 1] == 'o')
         {

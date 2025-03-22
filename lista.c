@@ -3,15 +3,18 @@
 #include "lista.h"
 
 // Função para inicializar a lista
-void inicializaLista(Lista* l) {
+void inicializaLista(Lista* l) 
+{
     l->head = NULL;
     l->tail = NULL;
 }
 
 // Função para inserir um novo elemento (x, y) no início da lista
-void insereInicio(Lista* l, int x, int y) {
+void insereInicio(Lista* l, int x, int y) 
+{
     Node* novoNo = (Node*)malloc(sizeof(Node));
-    if (!novoNo) {
+    if (!novoNo) 
+    {
         printf("Erro ao alocar memória.\n");
         exit(1);
     }
@@ -20,18 +23,24 @@ void insereInicio(Lista* l, int x, int y) {
     novoNo->next = l->head;
     novoNo->prev = NULL;
 
-    if (l->head == NULL) {  // Lista vazia
+    if (l->head == NULL) 
+    {  // Lista vazia
         l->tail = novoNo;
-    } else {
+    } 
+    
+    else 
+    {
         l->head->prev = novoNo;
     }
     l->head = novoNo;
 }
 
 // Função para inserir um novo elemento (x, y) no final da lista
-void insereFim(Lista* l, int x, int y) {
+void insereFim(Lista* l, int x, int y) 
+{
     Node* novoNo = (Node*)malloc(sizeof(Node));
-    if (!novoNo) {
+    if (!novoNo) 
+    {
         printf("Erro ao alocar memória.\n");
         exit(1);
     }
@@ -40,17 +49,23 @@ void insereFim(Lista* l, int x, int y) {
     novoNo->next = NULL;
     novoNo->prev = l->tail;
 
-    if (l->tail == NULL) {  // Lista vazia
+    if (l->tail == NULL) 
+    {  // Lista vazia
         l->head = novoNo;
-    } else {
+    } 
+    
+    else 
+    {
         l->tail->next = novoNo;
     }
     l->tail = novoNo;
 }
 
 // Função para remover o primeiro elemento da lista e retornar seus valores
-int removeInicio(Lista* l, int* x, int* y) {
-    if (listaVazia(l)) {
+int removeInicio(Lista* l, int* x, int* y) 
+{
+    if (listaVazia(l)) 
+    {
         printf("Lista vazia.\n");
         return 0;  // Falha
     }
@@ -59,9 +74,13 @@ int removeInicio(Lista* l, int* x, int* y) {
     *y = temp->y;
 
     l->head = l->head->next;
-    if (l->head == NULL) {  // Se a lista ficou vazia
+    if (l->head == NULL) 
+    {  // Se a lista ficou vazia
         l->tail = NULL;
-    } else {
+    } 
+    
+    else 
+    {
         l->head->prev = NULL;
     }
 
@@ -70,8 +89,10 @@ int removeInicio(Lista* l, int* x, int* y) {
 }
 
 // Função para remover o último elemento da lista e retornar seus valores
-int removeFim(Lista* l, int* x, int* y) {
-    if (listaVazia(l)) {
+int removeFim(Lista* l, int* x, int* y) 
+{
+    if (listaVazia(l)) 
+    {
         printf("Lista vazia.\n");
         return 0;  // Falha
     }
@@ -81,9 +102,13 @@ int removeFim(Lista* l, int* x, int* y) {
     *y = temp->y;
 
     l->tail = l->tail->prev;
-    if (l->tail == NULL) {  // Se a lista ficou vazia
+    if (l->tail == NULL) 
+    {  // Se a lista ficou vazia
         l->head = NULL;
-    } else {
+    } 
+    
+    else 
+    {
         l->tail->next = NULL;
     }
 
@@ -92,21 +117,26 @@ int removeFim(Lista* l, int* x, int* y) {
 }
 
 // Função para verificar se a lista está vazia
-int listaVazia(Lista* l) {
+int listaVazia(Lista* l) 
+{
     return (l->head == NULL);
 }
 
 // Função para liberar a memória ocupada pela lista
-void liberaLista(Lista* l) {
+void liberaLista(Lista* l) 
+{
     int x, y;
-    while (!listaVazia(l)) {
+    while (!listaVazia(l)) 
+    {
         removeInicio(l, &x, &y);
     }
 }
 
 // Função para obter o valor do primeiro elemento da lista (sem removê-lo)
-int getInicio(Lista* l, int* x, int* y) {
-    if (listaVazia(l)) {
+int getInicio(Lista* l, int* x, int* y) 
+{
+    if (listaVazia(l)) 
+    {
         printf("Lista vazia.\n");
         return 0;  // Falha
     }
@@ -116,8 +146,10 @@ int getInicio(Lista* l, int* x, int* y) {
 }
 
 // Função para obter o valor do último elemento da lista (sem removê-lo)
-int getFim(Lista* l, int* x, int* y) {
-    if (listaVazia(l)) {
+int getFim(Lista* l, int* x, int* y) 
+{
+    if (listaVazia(l)) 
+    {
         printf("Lista vazia.\n");
         return 0;  // Falha
     }
@@ -126,7 +158,8 @@ int getFim(Lista* l, int* x, int* y) {
     return 1;  // Sucesso
 }
 
-void setFim(Lista* l, int x, int y) {
+void setFim(Lista* l, int x, int y) 
+{
     l->tail->x = x;
     l->tail->y = y;
 }

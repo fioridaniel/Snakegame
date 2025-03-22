@@ -1,6 +1,7 @@
 #include "snakegame.h"
 
-void initializeWindow() {
+void initializeWindow() 
+{
     initscr();            // Inicia a tela
     raw();                // Modo raw, captura a tecla sem buffer
     keypad(stdscr, TRUE); // Habilita captura de teclas especiais, como F1, setas, etc.
@@ -40,16 +41,19 @@ int main()
     int userInput;
     int direction = 'd'; // primeira direcao vai ser d para evitar erro
 
+    // loop do jogo
     nodelay(stdscr, TRUE); 
     while(OnGame) 
     {
         userInput = getch();
 
+        // caso input seja 'e' 
         if(userInput == 'e')
         {
             break;
         }
 
+        // caso input seja 'esc'
         if(userInput == KEY_ESC)
         {
             mvprintw(MIDR + 1, COLS + 5, "JOGO PAUSADO.\n");
@@ -63,6 +67,7 @@ int main()
             userInput = direction;
         }
 
+        // caso input seja diferente de alguma tecla valida, o input permanece igual o ultimo input valido
         else if(userInput == ERR || userInput != 'w' && userInput != 'a' && userInput != 's' && userInput != 'd' && userInput != KEY_UP && userInput != KEY_LEFT && userInput != KEY_DOWN && userInput != KEY_RIGHT)
         {
            userInput = direction;
@@ -70,10 +75,12 @@ int main()
 
         getUserInput(headIndex, userInput, direction);
 
+        // caso a snake tenha "se comido", o jogo acaba
         if(tab[headIndex[0]][headIndex[1]] == 'o') goto endgame;
 
         foodWasEaten(lista, tab, headIndex, tailIndex, &tx, &ty, &score);
 
+        // caso a snake tenha encostado em alguma borda do tabuleiro, o jogo acaba tambem
         if(headIndex[0] == ROWS - 1 || headIndex[0] == 0 || headIndex[1] == COLS - 1 || headIndex[1] == 0)
         {
             endgame:
