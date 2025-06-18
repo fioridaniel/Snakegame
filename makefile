@@ -4,32 +4,31 @@ TARGET = fifers
 # Nome dos arquivos fonte
 SRC = snakegame.c lista.c recorde.c main.c
 
-# Gerar a lista de objetos a partir dos arquivos fonte
-OBJ = $(SRC:.c=.o)
+# Diretório de build
+BUILD_DIR = build
+
+# Gerar a lista de objetos dentro de build/
+OBJ = $(patsubst %.c,$(BUILD_DIR)/%.o,$(SRC))
 
 # Flags para o compilador
-CFLAGS = -lncurses
+CFLAGS = -Wall -lncurses
 
-# Comando padrão que é executado quando você executa 'make'
+# Regra padrão
 all: $(TARGET)
 
-# Regra para compilar o jogo
+# Compilar o executável com objetos dentro de build/
 $(TARGET): $(OBJ)
-	gcc -o $(TARGET) $(OBJ) $(CFLAGS)
+	gcc -o $@ $(OBJ) $(CFLAGS)
 
-# Regra para compilar os arquivos .c em .o
-%.o: %.c
-	gcc -c $< -o $@
+# Compilar cada .c em build/.o
+$(BUILD_DIR)/%.o: %.c
+	@mkdir -p $(BUILD_DIR)
+	gcc -c $< -o $@ -MMD -MF $(BUILD_DIR)/$*.d
 
-# Limpeza dos arquivos compilados
+# Limpar tudo
 clean:
-	rm -f $(TARGET) $(OBJ)
+	rm -f $(TARGET) $(BUILD_DIR)/*.o $(BUILD_DIR)/*.d
 
-# Incluir automaticamente as dependências dos arquivos .h
+# Incluir dependências automaticamente
 -include $(SRC:.c=.d)
-
-# Gerar as dependências automaticamente
-%.d: %.c
-	gcc -MM $< > $@.tmp
-	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.tmp > $@
-	rm -f $@.tmp
+-include $(patsubst %.c,$(BUILD_DIR)/%.d,$(SRC))

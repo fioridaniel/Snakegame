@@ -6,8 +6,9 @@
 int lerPontuacaoRecorde() 
 {
     FILE *file = fopen(RECORD_FILE, "r");
-    if (!file) {
-        return 0; // Se o arquivo não existir, a pontuação recorde é 0
+    if (!file) 
+    {
+        return 0; // se o arquivo não existir, a pontuacao recorde é 0
     }
 
     int recorde;
@@ -23,7 +24,8 @@ bool salvarPontuacaoRecorde(int score)
     if(score > pr)
     {
         FILE *file = fopen(RECORD_FILE, "w");
-        if (file) {
+        if (file) 
+        {
             fprintf(file, "%d", score);
             fclose(file);
             return true;
