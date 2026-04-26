@@ -94,26 +94,30 @@ void getUserInput(int* headIndex, int userInput, int direction)
 {
     if(userInput == 'w' || userInput == KEY_UP) // mover a snake para cima
     {
-        if(direction == 's' || direction == KEY_DOWN) return;
-            headIndex[0]--;   
+        if(direction == 's' || direction == KEY_DOWN) 
+            return;
+        headIndex[0]--;   
     }
 
     else if(userInput == 'a' || userInput == KEY_LEFT) // mover a snake para esquerda
     {
-        if(direction == 'd' || direction == KEY_RIGHT) return;
-            headIndex[1]--;      
+        if(direction == 'd' || direction == KEY_RIGHT) 
+            return;
+        headIndex[1]--;      
     }
 
     else if(userInput == 's' || userInput == KEY_DOWN) // mover para baixo
     {
-        if(direction == 'w' || direction == KEY_UP) return;
-            headIndex[0]++;
+        if(direction == 'w' || direction == KEY_UP)
+            return;
+        headIndex[0]++;
     }
 
     else if(userInput == 'd' || userInput == KEY_RIGHT) // mover para a direita
     {
-        if(direction == 'a' || direction == KEY_LEFT) return; 
-            headIndex[1]++;
+        if(direction == 'a' || direction == KEY_LEFT) 
+            return; 
+        headIndex[1]++;
     }
 }
 
